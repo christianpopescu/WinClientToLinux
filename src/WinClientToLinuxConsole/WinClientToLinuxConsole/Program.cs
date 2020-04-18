@@ -47,5 +47,39 @@ namespace WinClientToLinuxConsole
 
         }
 
+        static void TestMultipleCommandOnSsh()
+        {
+            SshClient sshclient = new SshClient("server", "user", "passs");
+            sshclient.Connect();
+            SshCommand sc = sshclient.CreateCommand("source ~/.profile 2> /dev/null; command");
+            sc.Execute();
+            string answer = sc.Result;
+            Console.WriteLine(answer);
+        }
+
+        static string TestRunWithResult(string command)
+        {
+            SshClient sshclient = new SshClient("server", "user", "passs");
+            sshclient.Connect();
+            SshCommand sc = sshclient.CreateCommand("source ~/.profile 2> /dev/null;" + command);
+            sc.Execute();
+            string answer = sc.Result;
+            sshclient.Disconnect();
+            return answer;
+        }
+
+        static string StartRunningWithResult(string command)
+        {
+            SshClient sshclient = new SshClient("server", "user", "passs");
+            sshclient.Connect();
+            SshCommand sc = sshclient.CreateCommand("source ~/.profile 2> /dev/null;" + command);
+            sc.Execute();
+            string answer = sc.Result;
+            sshclient.Disconnect();
+            return answer;
+        }
+
+
+
     }
 }
