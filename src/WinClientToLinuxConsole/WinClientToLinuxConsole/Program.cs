@@ -12,6 +12,9 @@ namespace WinClientToLinuxConsole
     {
         static void Main(string[] args)
         {
+            TestMultipleCommandOnSsh();
+
+            Console.ReadKey();
         }
 
         static void TestSftp()
@@ -49,9 +52,9 @@ namespace WinClientToLinuxConsole
 
         static void TestMultipleCommandOnSsh()
         {
-            SshClient sshclient = new SshClient("server", "user", "passs");
+            SshClient sshclient = new SshClient("192.168.1.52", "christian", "password");
             sshclient.Connect();
-            SshCommand sc = sshclient.CreateCommand("source ~/.profile 2> /dev/null; command");
+            SshCommand sc = sshclient.CreateCommand("source ~/.bash_profile 2> /dev/null; ls");
             sc.Execute();
             string answer = sc.Result;
             Console.WriteLine(answer);
