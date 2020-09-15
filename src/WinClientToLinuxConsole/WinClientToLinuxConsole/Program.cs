@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Renci.SshNet;
+using WinClientToLinuxConsole.Server;
 
 namespace WinClientToLinuxConsole
 {
@@ -64,12 +65,9 @@ namespace WinClientToLinuxConsole
 
         static string TestRunWithResult(string command)
         {
-            SshClient sshclient = new SshClient("192.168.5.128", "christian", "password");
-            sshclient.Connect();
-            SshCommand sc = sshclient.CreateCommand("source ~/.profile 2> /dev/null;" + command);
-            sc.Execute();
-            string answer = sc.Result;
-            sshclient.Disconnect();
+            LinuxServer ls = new LinuxServer() {Host = "192.168.5.128" ,
+                connectionParameters = new ConnectionParameters() {User = "christian", Password = "Christian1967"}};
+            string answer = ls.RunCommandSync("source ~/.profile 2> /dev/null;" + command);
             return answer;
         }
 
