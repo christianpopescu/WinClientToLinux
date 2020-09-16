@@ -25,5 +25,10 @@ namespace WinClientToLinuxConsole.Server
             sshclient.Disconnect();
             return answer;
         }
+
+        public string GetFileContentSync(string file)
+        {
+            return RunCommandSync("cat " + file);
+        }
     }
 }

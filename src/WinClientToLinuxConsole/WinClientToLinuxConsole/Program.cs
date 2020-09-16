@@ -15,7 +15,8 @@ namespace WinClientToLinuxConsole
         {
             // TestMultipleCommandOnSsh();
 
-            Console.WriteLine(TestRunWithResult("ls -la"));
+            //Console.WriteLine(TestRunWithResult("ls -la"));
+            Console.WriteLine(ShowFileContent(@"/home/christian/ccp_main/testfile.txt"));
 
             Console.ReadKey();
         }
@@ -66,8 +67,19 @@ namespace WinClientToLinuxConsole
         static string TestRunWithResult(string command)
         {
             LinuxServer ls = new LinuxServer() {Host = "192.168.5.128" ,
-                connectionParameters = new ConnectionParameters() {User = "christian", Password = "Christian1967"}};
+                connectionParameters = new ConnectionParameters() {User = "christian", Password = "password"}};
             string answer = ls.RunCommandSync("source ~/.profile 2> /dev/null;" + command);
+            return answer;
+        }
+
+        static string ShowFileContent(string filename)
+        {
+            LinuxServer ls = new LinuxServer()
+            {
+                Host = "192.168.5.128",
+                connectionParameters = new ConnectionParameters() { User = "christian", Password = "Christian1967" }
+            };
+            string answer = ls.GetFileContentSync(filename);
             return answer;
         }
 
