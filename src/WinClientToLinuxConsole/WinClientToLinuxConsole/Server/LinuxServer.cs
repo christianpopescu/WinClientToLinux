@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,16 @@ namespace WinClientToLinuxConsole.Server
         public string GetFileContentSync(string file)
         {
             return RunCommandSync("cat " + file);
+        }
+
+        public void GetFileBySftpSync(string source, string destination)
+        {
+            SftpClient sftp = new SftpClient(Host, connectionParameters.User, connectionParameters.Password);
+            sftp.Connect();
+            using (Stream fileStream = File.OpenWrite(destination))
+            {
+                sftp.DownloadFile(source, fileStream);
+            }
         }
     }
 }

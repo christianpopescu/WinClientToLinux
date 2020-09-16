@@ -17,6 +17,8 @@ namespace WinClientToLinuxConsole
 
             //Console.WriteLine(TestRunWithResult("ls -la"));
             Console.WriteLine(ShowFileContent(@"/home/christian/ccp_main/testfile.txt"));
+            GetFileBySftpSync(@"/home/christian/ccp_main/testfile.txt", @"E:\Temp\ToDelete\file1.txt");
+            GetFileBySftpSync(@"/home/christian/ccp_main/anotherfile.txt", @"E:\Temp\ToDelete\file2.txt");
 
             Console.ReadKey();
         }
@@ -81,6 +83,17 @@ namespace WinClientToLinuxConsole
             };
             string answer = ls.GetFileContentSync(filename);
             return answer;
+        }
+
+        static void GetFileBySftpSync(string source, string destination)
+        {
+            LinuxServer ls = new LinuxServer()
+            {
+                Host = "192.168.5.128",
+                connectionParameters = new ConnectionParameters() { User = "christian", Password = "Christian1967" }
+            };
+            ls.GetFileBySftpSync(source,destination);
+            
         }
 
         static string StartRunningWithResult(string command)
