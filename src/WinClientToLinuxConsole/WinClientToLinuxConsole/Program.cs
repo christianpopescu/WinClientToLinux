@@ -68,30 +68,24 @@ namespace WinClientToLinuxConsole
 
         static string TestRunWithResult(string command)
         {
-            LinuxServer ls = new LinuxServer() {Host = "192.168.5.128" ,
-                connectionParameters = new ConnectionParameters() {User = "christian", Password = "password"}};
+            LinuxServer ls = new LinuxServer("server1", "192.168.5.128" ,
+                new ConnectionParameters() {User = "christian", Password = "password"});
             string answer = ls.RunCommandSync("source ~/.profile 2> /dev/null;" + command);
             return answer;
         }
 
         static string ShowFileContent(string filename)
         {
-            LinuxServer ls = new LinuxServer()
-            {
-                Host = "192.168.5.128",
-                connectionParameters = new ConnectionParameters() { User = "christian", Password = "Christian1967" }
-            };
+            LinuxServer ls =  new LinuxServer("server1", "192.168.5.128",
+                new ConnectionParameters() { User = "christian", Password = "password" });
             string answer = ls.GetFileContentSync(filename);
             return answer;
         }
 
         static void GetFileBySftpSync(string source, string destination)
         {
-            LinuxServer ls = new LinuxServer()
-            {
-                Host = "192.168.5.128",
-                connectionParameters = new ConnectionParameters() { User = "christian", Password = "Christian1967" }
-            };
+            LinuxServer ls = new LinuxServer("server1", "192.168.5.128",
+                new ConnectionParameters() { User = "christian", Password = "password" });
             ls.GetFileBySftpSync(source,destination);
             
         }
