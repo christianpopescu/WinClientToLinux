@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinuxServerList>
+  <LinuxServer>
+    <ServerId>Server01</ServerId>
+    <Host>192.168.1.52</Host>
+    <User>christian</User>
+    <Password>Christian1967</Password>
+  </LinuxServer>
+</LinuxServerList>
