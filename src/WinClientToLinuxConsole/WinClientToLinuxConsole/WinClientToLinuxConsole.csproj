@@ -48,7 +48,8 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\LinuxServerDto.cs" />
+    <Compile Include="Repository\ILinuxServerDto.cs" />
+    <Compile Include="Repository\ILinuxServerRepository.cs" />
     <Compile Include="Server\ConnectionParameter.cs" />
     <Compile Include="Server\LinuxServer.cs" />
     <Compile Include="Server\ServerFactory.cs" />
