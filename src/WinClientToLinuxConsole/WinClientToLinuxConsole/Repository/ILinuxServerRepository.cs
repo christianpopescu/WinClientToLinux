@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WinClientToLinuxConsole.Repository
 {
-    interface ILinuxServerRepository
+    public interface ILinuxServerRepository
     {
 
         ILinuxServerDto GetServerById(string serverId);

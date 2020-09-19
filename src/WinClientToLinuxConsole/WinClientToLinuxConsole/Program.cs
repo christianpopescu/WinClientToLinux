@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Renci.SshNet;
+using WinClientToLinuxConsole.Repository;
 using WinClientToLinuxConsole.Server;
 
 namespace WinClientToLinuxConsole
@@ -16,11 +17,20 @@ namespace WinClientToLinuxConsole
             // TestMultipleCommandOnSsh();
 
             //Console.WriteLine(TestRunWithResult("ls -la"));
-            Console.WriteLine(ShowFileContent(@"/home/christian/ccp_main/testfile.txt"));
+  /*          Console.WriteLine(ShowFileContent(@"/home/christian/ccp_main/testfile.txt"));
             GetFileBySftpSync(@"/home/christian/ccp_main/testfile.txt", @"E:\Temp\ToDelete\file1.txt");
             GetFileBySftpSync(@"/home/christian/ccp_main/anotherfile.txt", @"E:\Temp\ToDelete\file2.txt");
+  */
 
+            TestXmlRepository();
             Console.ReadKey();
+        }
+
+        static void TestXmlRepository()
+        {
+            XmlFileRepository<LinuxServerDto> ServerRepository = 
+                new XmlFileRepository<LinuxServerDto>(@"E:\ccp_vhdd_main\workspace\WinClientToLinux\wrkspace\LinuxServerList.xml");
+            ServerRepository.GetServerById("Server01");
         }
 
         static void TestSftp()
