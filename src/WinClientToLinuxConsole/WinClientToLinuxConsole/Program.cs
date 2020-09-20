@@ -28,9 +28,11 @@ namespace WinClientToLinuxConsole
 
         static void TestXmlRepository()
         {
-            XmlFileRepository<LinuxServerDto> ServerRepository = 
+            ILinuxServerRepository ServerRepository = 
                 new XmlFileRepository<LinuxServerDto>(@"E:\ccp_vhdd_main\workspace\WinClientToLinux\wrkspace\LinuxServerList.xml");
-            ServerRepository.GetServerById("Server01");
+            ILinuxServerDto lsDto = ServerRepository.GetServerById("Server01");
+
+            LinuxServer ls = new LinuxServer(lsDto.ServerId, lsDto.Host, new ConnectionParameters(lsDto.User, lsDto.Password));
         }
 
         static void TestSftp()
