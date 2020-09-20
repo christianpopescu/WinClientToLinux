@@ -23,10 +23,18 @@ namespace WinClientToLinuxConsole
             */
 
              //TestXmlRepository();
-             TestServerFactory();
+//             TestServerFactory();
+             FinalCommandTest();
             Console.ReadKey();
         }
 
+        static void FinalCommandTest()
+        {
+            LinuxServerService lss =
+                new LinuxServerService(@"E:\ccp_vhdd_main\workspace\WinClientToLinux\wrkspace\LinuxServerList.xml");
+            Console.WriteLine(lss.RunCommandWithResultSync("Server01", "ls -la"));
+        }
+        
         static void TestXmlRepository()
         {
             ILinuxServerRepository ServerRepository = 

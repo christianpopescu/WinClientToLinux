@@ -2,13 +2,13 @@
 <LinuxServerList>
   <LinuxServer>
     <ServerId>Server01</ServerId>
-    <Host>192.168.1.52</Host>
+    <Host>192.168.5.128</Host>
     <User>christian</User>
     <Password>Christian1967</Password>
   </LinuxServer>
   <LinuxServer>
     <ServerId>Server0</ServerId>
-    <Host>192.168.1.52</Host>
+    <Host>192.168.5.128</Host>
     <User>christian</User>
     <Password>Christian1967</Password>
   </LinuxServer>

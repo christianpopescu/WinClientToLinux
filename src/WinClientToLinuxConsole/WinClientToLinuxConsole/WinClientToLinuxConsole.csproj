@@ -53,6 +53,7 @@
     <Compile Include="Repository\XmlFileRepository.cs" />
     <Compile Include="Server\ConnectionParameter.cs" />
     <Compile Include="Server\LinuxServer.cs" />
+    <Compile Include="Server\LinuxServerService.cs" />
     <Compile Include="Server\ServerFactory.cs" />
   </ItemGroup>
   <ItemGroup>
