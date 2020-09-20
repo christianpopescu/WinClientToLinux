@@ -7,10 +7,10 @@ using System.Xml.Linq;
 
 namespace WinClientToLinuxConsole.Repository
 {
-    public class XmlFileRepository<TDto> : ILinuxServerRepository where TDto :ILinuxServerDto, new()
+    public class XmlFileRepository : ILinuxServerRepository 
     {
-        protected List<TDto> listOfLinuxServers = new List<TDto>();
-        protected Dictionary<string, ILinuxServerDto> dictLinuxServer = new Dictionary<string, ILinuxServerDto>();
+        protected List<LinuxServerDto> listOfLinuxServers = new List<LinuxServerDto>();
+        protected Dictionary<string, LinuxServerDto> dictLinuxServer = new Dictionary<string, LinuxServerDto>();
 
         public XmlFileRepository(string pathToFile)
         {
@@ -23,7 +23,7 @@ namespace WinClientToLinuxConsole.Repository
                 }
  */
                 listOfLinuxServers = repositoryDocument.Root.Elements().Select(xelem =>
-                    new TDto()
+                    new LinuxServerDto()
                     {
                         ServerId = xelem.Element("ServerId").Value,
                         Host = xelem.Element("Host").Value,
@@ -39,14 +39,14 @@ namespace WinClientToLinuxConsole.Repository
 
         }
         
-        public ILinuxServerDto GetServerById(string serverId)
+        public LinuxServerDto GetServerById(string serverId)
         {
             return dictLinuxServer [serverId];
         }
 
-        public IList<ILinuxServerDto> GetServerList()
+        public IList<LinuxServerDto> GetServerList()
         {
-            return listOfLinuxServers as IList<ILinuxServerDto>;
+            return listOfLinuxServers;
         }
     }
 }

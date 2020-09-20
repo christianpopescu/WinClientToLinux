@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WinClientToLinuxConsole.Repository
 {
-    public class LinuxServerDto : ILinuxServerDto
+    public class LinuxServerDto 
     {
         public string ServerId { get; set; }
         public string Host { get; set; }

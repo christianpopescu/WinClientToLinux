@@ -17,23 +17,34 @@ namespace WinClientToLinuxConsole
             // TestMultipleCommandOnSsh();
 
             //Console.WriteLine(TestRunWithResult("ls -la"));
-  /*          Console.WriteLine(ShowFileContent(@"/home/christian/ccp_main/testfile.txt"));
-            GetFileBySftpSync(@"/home/christian/ccp_main/testfile.txt", @"E:\Temp\ToDelete\file1.txt");
-            GetFileBySftpSync(@"/home/christian/ccp_main/anotherfile.txt", @"E:\Temp\ToDelete\file2.txt");
-  */
+            /*          Console.WriteLine(ShowFileContent(@"/home/christian/ccp_main/testfile.txt"));
+                      GetFileBySftpSync(@"/home/christian/ccp_main/testfile.txt", @"E:\Temp\ToDelete\file1.txt");
+                      GetFileBySftpSync(@"/home/christian/ccp_main/anotherfile.txt", @"E:\Temp\ToDelete\file2.txt");
+            */
 
-            TestXmlRepository();
+             //TestXmlRepository();
+             TestServerFactory();
             Console.ReadKey();
         }
 
         static void TestXmlRepository()
         {
             ILinuxServerRepository ServerRepository = 
-                new XmlFileRepository<LinuxServerDto>(@"E:\ccp_vhdd_main\workspace\WinClientToLinux\wrkspace\LinuxServerList.xml");
-            ILinuxServerDto lsDto = ServerRepository.GetServerById("Server01");
+                new XmlFileRepository(@"E:\ccp_vhdd_main\workspace\WinClientToLinux\wrkspace\LinuxServerList.xml");
+            LinuxServerDto lsDto = ServerRepository.GetServerById("Server01");
 
             LinuxServer ls = new LinuxServer(lsDto.ServerId, lsDto.Host, new ConnectionParameters(lsDto.User, lsDto.Password));
         }
+
+        static void TestServerFactory()
+        {
+            ServerFactory sf =
+                new ServerFactory(
+                    new XmlFileRepository(
+                        @"E:\ccp_vhdd_main\workspace\WinClientToLinux\wrkspace\LinuxServerList.xml"));
+            LinuxServer ls = sf.GetServer("Server01");
+        }
+
 
         static void TestSftp()
         {

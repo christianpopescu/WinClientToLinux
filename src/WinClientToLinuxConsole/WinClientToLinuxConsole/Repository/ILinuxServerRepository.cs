@@ -9,7 +9,7 @@ namespace WinClientToLinuxConsole.Repository
     public interface ILinuxServerRepository
     {
 
-        ILinuxServerDto GetServerById(string serverId);
-        IList<ILinuxServerDto> GetServerList();
+        LinuxServerDto GetServerById(string serverId);
+        IList<LinuxServerDto> GetServerList();
     }
 }
