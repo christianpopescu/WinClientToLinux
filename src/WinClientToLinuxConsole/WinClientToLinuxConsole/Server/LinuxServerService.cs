@@ -24,6 +24,11 @@ namespace WinClientToLinuxConsole.Server
             return aServer.RunCommandSync(command);
         }
 
+        public void GetFileBySftpSync(string serverId, string source, string destination)
+        {
+            aServer = serverFactory.GetServer(serverId);
+            aServer.GetFileBySftpSync(source, destination);
+        }
         #endregion
 
     }
